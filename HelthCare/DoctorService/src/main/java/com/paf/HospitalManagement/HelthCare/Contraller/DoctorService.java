@@ -23,8 +23,8 @@ public class DoctorService {
 	
 	public String View_Doctor() {
 		
-		DoctorModel model = new DoctorModel();
-		String status = model.ViewDoctor();
+		DoctorModel modelObject = new DoctorModel();
+		String status = modelObject.ViewDoctor();
 		
 		return status;
 	}
