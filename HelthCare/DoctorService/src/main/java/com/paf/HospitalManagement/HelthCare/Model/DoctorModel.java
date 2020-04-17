@@ -24,14 +24,14 @@ public class DoctorModel {
 	         
 					a = "<table>"
 	     				+ "<tr>"
-	     				+ "<th>doctor_id<td>"	     				
-	     				+ "<th>f_name<td>"
-	     				+ "<th>l_name<td>"
-	     				+ "<th>email<td>"
-	     				+ "<th>phoneNo<td>"
-	     				+ "<th>nic<td>"	     				 
-	     				+ "<th>Specialization<td>"	     				 
-	     				+ "<th>age<td>"	     				 
+	     				+ "<th>doctor_id</th>"	     				
+	     				+ "<th>f_name</th>"
+	     				+ "<th>l_name</th>"
+	     				+ "<th>email</th>"
+	     				+ "<th>phoneNo</th>"
+	     				+ "<th>nic</th>"	     				 
+	     				+ "<th>Specialization</th>"	     				 
+	     				+ "<th>age</th>"	     				 
 	     				+ "</tr>";		
 					
 					
@@ -39,14 +39,14 @@ public class DoctorModel {
 	         while (rs.next()) {
              
 	        	   a +=  "<tr>"
-	     				+ "<td>"+rs.getInt("id")+"<td>"
-	     				+ "<td>"+rs.getString("f_name")+"<td>"
-	     				+ "<td>"+rs.getString("l_name")+"<td>"
-	     				+ "<td>"+rs.getString("email")+"<td>"
-	     				+ "<td>"+rs.getInt("phoneNo")+"<td>"
-	     				+ "<td>"+rs.getString("nic")+"<td>"	     				 			 
-	     				+ "<td>"+rs.getString("Specialization")+"<td>"	     				 			 
-	     				+ "<td>"+rs.getInt("age")+"<td>"	     				 			 
+	     				+ "<td>"+rs.getInt("id")+"</td>"
+	     				+ "<td>"+rs.getString("f_name")+"</td>"
+	     				+ "<td>"+rs.getString("l_name")+"</td>"
+	     				+ "<td>"+rs.getString("email")+"</td>"
+	     				+ "<td>"+rs.getInt("phoneNo")+"</td>"
+	     				+ "<td>"+rs.getString("nic")+"</td>"	     				 			 
+	     				+ "<td>"+rs.getString("Specialization")+"</td>"	     				 			 
+	     				+ "<td>"+rs.getInt("age")+"</td>"	     				 			 
 	     				+ "</tr>";
 	     				 
 	        	   
