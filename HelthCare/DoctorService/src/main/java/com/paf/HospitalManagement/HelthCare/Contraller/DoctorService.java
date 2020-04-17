@@ -21,6 +21,7 @@ public class DoctorService {
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML) 
 	
+	//Convert the input string to an HTML document 
 	public String View_Doctor() {
 		
 		DoctorModel modelObject = new DoctorModel();
@@ -33,10 +34,13 @@ public class DoctorService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	
+	//Read the values from the JSON object  
 	public String Add_Doctor(String details) {
 		
+		//Convert the input string to a JSON object 
 		JsonObject A_details = new JsonParser().parse(details).getAsJsonObject(); 
 		 
+		//Read the values from the JSON object  
 		String f_name = A_details.get("f_name").getAsString();
 		String l_name = A_details.get("l_name").getAsString();
 		String email = A_details.get("email").getAsString();
@@ -44,8 +48,7 @@ public class DoctorService {
 		String nic = A_details.get("nic").getAsString(); 
 		String Specialization = A_details.get("Specialization").getAsString(); 
 		int age = A_details.get("age").getAsInt(); 
-
-		 
+ 
 		DoctorBean doctor = new DoctorBean();		 
 		doctor.setF_name(f_name);
 		doctor.setL_name(l_name);
@@ -67,8 +70,10 @@ public class DoctorService {
 	
 	public String Update_Doctor(String details) {
 		
+		//Convert the input string to an Jason document  
 		JsonObject A_details = new JsonParser().parse(details).getAsJsonObject(); 
 		 
+		//Read the values from the JSON object  
 		int id = A_details.get("id").getAsInt();
 		String f_name = A_details.get("f_name").getAsString();
 		String l_name = A_details.get("l_name").getAsString();
@@ -77,7 +82,6 @@ public class DoctorService {
 		String nic = A_details.get("nic").getAsString(); 
 		String Specialization = A_details.get("Specialization").getAsString(); 
 		int age = A_details.get("age").getAsInt(); 
-
 		 
 		DoctorBean doctor = new DoctorBean();		 
 		doctor.setId(id);
@@ -100,10 +104,12 @@ public class DoctorService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON) 
 	
+	//Convert the input string to an XML document 
 	public String Delete_Doctor(String id) {
 		
 		JsonObject P_details = new JsonParser().parse(id).getAsJsonObject();
 		
+		//Read the value from the element <itemID>  
 		int id1 = P_details.get("id").getAsInt();
 		
 		DoctorModel model = new DoctorModel();
