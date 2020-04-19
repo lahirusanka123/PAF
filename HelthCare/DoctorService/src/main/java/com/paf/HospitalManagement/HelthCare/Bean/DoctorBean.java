@@ -8,7 +8,7 @@ public class DoctorBean {
 	String email;	
 	int phoneNo;
 	String nic;
-	String Specialization;
+	String specialization;
 	int age;
 	
 	public DoctorBean() {
@@ -24,7 +24,7 @@ public class DoctorBean {
 		this.email = email;
 		this.phoneNo = phoneNo;
 		this.nic = nic;
-		Specialization = specialization;
+		this.specialization = specialization;
 		this.age = age;
 	}
 
@@ -77,11 +77,11 @@ public class DoctorBean {
 	}
 
 	public String getSpecialization() {
-		return Specialization;
+		return specialization;
 	}
 
 	public void setSpecialization(String specialization) {
-		Specialization = specialization;
+		this.specialization = specialization;
 	}
 
 	public int getAge() {
@@ -92,5 +92,4 @@ public class DoctorBean {
 		this.age = age;
 	}
 	 
-
 }

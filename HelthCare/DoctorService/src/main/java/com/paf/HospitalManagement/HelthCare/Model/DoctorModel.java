@@ -13,16 +13,18 @@ public class DoctorModel {
 	HelthCareDB db = new HelthCareDB();
 	Connection con = db.getCon();
 
+	//Create method for ViewDoctorFeedback
 	public String ViewDoctor() {
 		
-		String a = null;
+		String output = null;
 		
 		try {
 			String sql = "SELECT * FROM doctor";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery(); 
+			PreparedStatement preparedStmt = con.prepareStatement(sql);
+			ResultSet resultSetrs = preparedStmt.executeQuery(); 
 	         
-					a = "<table>"
+			// Prepare the html table to be displayed 
+			output = "<table>"
 	     				+ "<tr>"
 	     				+ "<th>doctor_id</th>"	     				
 	     				+ "<th>f_name</th>"
@@ -34,50 +36,50 @@ public class DoctorModel {
 	     				+ "<th>age</th>"	     				 
 	     				+ "</tr>";		
 					
-					
-			
-	         while (rs.next()) {
+			// iterate through the rows in the result set  
+	         while (resultSetrs.next()) {
              
-	        	   a +=  "<tr>"
-	     				+ "<td>"+rs.getInt("id")+"</td>"
-	     				+ "<td>"+rs.getString("f_name")+"</td>"
-	     				+ "<td>"+rs.getString("l_name")+"</td>"
-	     				+ "<td>"+rs.getString("email")+"</td>"
-	     				+ "<td>"+rs.getInt("phoneNo")+"</td>"
-	     				+ "<td>"+rs.getString("nic")+"</td>"	     				 			 
-	     				+ "<td>"+rs.getString("Specialization")+"</td>"	     				 			 
-	     				+ "<td>"+rs.getInt("age")+"</td>"	     				 			 
-	     				+ "</tr>";
-	     				 
+	        	 output +=  "<tr>"
+	     				+ "<td>"+resultSetrs.getInt("id")+"</td>"
+	     				+ "<td>"+resultSetrs.getString("f_name")+"</td>"
+	     				+ "<td>"+resultSetrs.getString("l_name")+"</td>"
+	     				+ "<td>"+resultSetrs.getString("email")+"</td>"
+	     				+ "<td>"+resultSetrs.getInt("phoneNo")+"</td>"
+	     				+ "<td>"+resultSetrs.getString("nic")+"</td>"	     				 			 
+	     				+ "<td>"+resultSetrs.getString("Specialization")+"</td>"	     				 			 
+	     				+ "<td>"+resultSetrs.getInt("age")+"</td>"	     				 			 
+	     				+ "</tr>";			 
 	        	   
 	         }
 	         
-	         a += "</table>";
+	         // Complete the html table  
+	         output += "</table>";
 	         
 	         
 			} catch (SQLException e) {
 				 
-				e.printStackTrace();
+				output = "Error while reading the DoctorDetails.";
+				System.err.println(e.getMessage());
 			}
-              
-		
-		return a;
+              		
+		return output;
 
 	}
-
+	
+	//Create method for addDoctor
 	public String addDoctor(DoctorBean Dbean) {
 
-		String e1 = null;
+		String output = null;
 
 		try {
 			
-
+			// create a prepared statement  
 			String sql = "INSERT INTO doctor (f_name, l_name, email,phoneNo,nic,Specialization,age) "
 						+ "VALUE(?,?,?,?,?,?,?)";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-
+			//binding values 
 			ps.setString(1, Dbean.getF_name());
 			ps.setString(2, Dbean.getL_name());
 			ps.setString(3, Dbean.getEmail());
@@ -86,26 +88,28 @@ public class DoctorModel {
 			ps.setString(6, Dbean.getSpecialization());
 			ps.setInt(7, Dbean.getAge());
 			
-			
+			// execute the statement  
 			ps.executeUpdate();
 
-			e1 = "Doctor details inserted";
+			output = "Doctor details inserted";
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			output = "Error while reading the DoctorDetails.";
+			System.err.println(e.getMessage());
 		}
-		return e1;
+		return output;
 
 	}
-
+	//create method for UpdateDoctor
 	public String UpdateDoctor(DoctorBean Dbean) {
 
-		String e = null;
+		String output = null;
 		
 		
 		try {
 			
+			// create a prepared statement    
 			String sql = "UPDATE  doctor SET " 
 						+ "f_name = ?," 
 						+ "l_name = ?,"
@@ -116,11 +120,9 @@ public class DoctorModel {
 						+ "Specialization = ?"											 
 						+ "WHERE id = ?";
 			
-					
-
 			PreparedStatement ps = con.prepareStatement(sql);
 			
-			
+			//binding values  
 			ps.setString(1, Dbean.getF_name());
 			ps.setString(2, Dbean.getL_name());
 			ps.setString(3, Dbean.getEmail());
@@ -132,44 +134,43 @@ public class DoctorModel {
 			
 			System.out.println(ps);
 			
+			// execute the statement   
 			ps.executeUpdate();
 			
-			e = "Doctor "+Dbean.getId()+" details Updated";
+			output = "Doctor "+Dbean.getId()+" details Updated"; //display update successfully
 			
-			
-		} catch (SQLException e1) {
-
-
-			e1.printStackTrace();
-		}
-
-		
-
-		return e;
-
-	}
-
-	public String DeleteDoctor(int id) {
-		
-		String status = null; 	
-		
-		try {
-			String sql = "DELETE  FROM doctor  "
-						+ "WHERE id = ?";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
-			ps.executeLargeUpdate();
-			status = "Doctor "+id+" deleted ";
 			
 		} catch (SQLException e) {
-			 
-			e.printStackTrace();
-		}
-		 
-		
-		return status;
 
+			output = "Error while reading the DoctorDetails.";
+			System.err.println(e.getMessage());
+		}
+
+		return output;
+
+	}
+	//create method for deleteDoctor
+	public String DeleteDoctor(int id) {
+		
+		String output = null; 	
+		
+		try {
+				// create a prepared statement  
+				String sql = "DELETE  FROM doctor  "
+							+ "WHERE id = ?";
+				
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setInt(1, id);
+				// execute the statement  
+				ps.executeLargeUpdate();
+				output = "Doctor "+id+" deleted ";
+				
+		} catch (SQLException e) {
+				 
+				output = "Error while reading the DoctorDetails.";
+				System.err.println(e.getMessage());
+		  } 
+		return output;
 	}
 
 }

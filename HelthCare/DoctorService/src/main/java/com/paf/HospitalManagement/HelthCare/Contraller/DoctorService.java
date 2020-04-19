@@ -46,7 +46,7 @@ public class DoctorService {
 		String email = A_details.get("email").getAsString();
 		int phoneNo = A_details.get("phoneNo").getAsInt(); 
 		String nic = A_details.get("nic").getAsString(); 
-		String Specialization = A_details.get("Specialization").getAsString(); 
+		String specialization = A_details.get("Specialization").getAsString(); 
 		int age = A_details.get("age").getAsInt(); 
  
 		DoctorBean doctor = new DoctorBean();		 
@@ -55,13 +55,13 @@ public class DoctorService {
 		doctor.setEmail(email);
 		doctor.setPhoneNo(phoneNo);
 		doctor.setNic(nic);
-		doctor.setSpecialization(Specialization);
+		doctor.setSpecialization(specialization);
 		doctor.setAge(age);
 		 
 		DoctorModel model = new DoctorModel();
-		String status = model.addDoctor(doctor); 
+		String output = model.addDoctor(doctor); 
 		
-		return status;
+		return output;
 	}
 	
 	@PUT
@@ -80,7 +80,7 @@ public class DoctorService {
 		String email = A_details.get("email").getAsString();
 		int phoneNo = A_details.get("phoneNo").getAsInt(); 
 		String nic = A_details.get("nic").getAsString(); 
-		String Specialization = A_details.get("Specialization").getAsString(); 
+		String specialization = A_details.get("Specialization").getAsString(); 
 		int age = A_details.get("age").getAsInt(); 
 		 
 		DoctorBean doctor = new DoctorBean();		 
@@ -90,13 +90,13 @@ public class DoctorService {
 		doctor.setEmail(email);
 		doctor.setPhoneNo(phoneNo);
 		doctor.setNic(nic);
-		doctor.setSpecialization(Specialization);
+		doctor.setSpecialization(specialization);
 		doctor.setAge(age);
 		 
 		DoctorModel model = new DoctorModel();
-		String status = model.UpdateDoctor(doctor); 
+		String output = model.UpdateDoctor(doctor); 
 		
-		return status;
+		return output;
 	}
 	
 	@DELETE
@@ -109,13 +109,13 @@ public class DoctorService {
 		
 		JsonObject P_details = new JsonParser().parse(id).getAsJsonObject();
 		
-		//Read the value from the element <itemID>  
+		//Read the value from the element <id>  
 		int id1 = P_details.get("id").getAsInt();
 		
 		DoctorModel model = new DoctorModel();
-		String status = model.DeleteDoctor(id1); 
+		String output = model.DeleteDoctor(id1); 
 		
-		return status;
+		return output;
 		
 	}
 }
