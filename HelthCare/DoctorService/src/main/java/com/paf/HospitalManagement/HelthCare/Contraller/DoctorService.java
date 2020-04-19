@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -100,17 +101,17 @@ public class DoctorService {
 	}
 	
 	@DELETE
-	@Path("/")
+	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON) 
 	
 	//Convert the input string to an XML document 
-	public String Delete_Doctor(String id) {
+	public String Delete_Doctor(@PathParam("id") String id) {
 		
-		JsonObject P_details = new JsonParser().parse(id).getAsJsonObject();
+		
 		
 		//Read the value from the element <itemID>  
-		int id1 = P_details.get("id").getAsInt();
+		int id1 = Integer.parseInt(id);
 		
 		DoctorModel model = new DoctorModel();
 		String status = model.DeleteDoctor(id1); 

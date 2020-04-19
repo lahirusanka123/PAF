@@ -1,5 +1,7 @@
 package com.paf.HospitalManagement.HelthCare.Contraller;
 
+import java.sql.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -42,6 +44,7 @@ public class AppointmentService {
 		int doctor_id = A_details.get("doctor_id").getAsInt();
 		String date = A_details.get("date").getAsString(); 
 		String time = A_details.get("time").getAsString(); 
+		
 		
 		AppointmentBean appointment = new AppointmentBean();		 
 		appointment.setPatient_id(patient_id);
